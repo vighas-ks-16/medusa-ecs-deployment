@@ -1,0 +1,32 @@
+# Ignore Terraform state and cache files
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+# Ignore sensitive files or configs (if any)
+*.env
+*.pem
+
+# Node modules (if any are present)
+node_modules/
+
+# Docker files
+**/Dockerfile
+
+# VSCode or IDE-specific files
+.vscode/
+.idea/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local override files
+*.override.tf
+
+# GitHub workflow temp files
+.github/workflows/*.bak
