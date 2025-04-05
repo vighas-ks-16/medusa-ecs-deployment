@@ -7,5 +7,5 @@ output "rds_endpoint" {
 }
 
 output "rds_db_name" {
-  value = aws_db_instance.medusa_postgres.name
+  value = aws_db_instance.medusa_postgres.db_name
 }

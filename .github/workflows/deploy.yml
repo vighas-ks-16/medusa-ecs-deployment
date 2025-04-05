@@ -12,6 +12,13 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
     - name: Log in to DockerHub
       uses: docker/login-action@v3
       with:
@@ -23,9 +30,17 @@ jobs:
         docker build -t ${{ secrets.DOCKER_USERNAME }}/medusa-backend:latest ./medusa-backend
         docker push ${{ secrets.DOCKER_USERNAME }}/medusa-backend:latest
 
-    - name: Deploy to ECS
+    - name: Render Amazon ECS task definition
+      id: render-task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: terraform/ecs-task-def.json
+        container-name: medusa
+        image: ${{ secrets.DOCKER_USERNAME }}/medusa-backend:latest
+
+    - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        cluster: medusa-cluster
         service: medusa-service
-        task-definition: your-task-def.json
+        cluster: medusa-cluster
+        task-definition: ${{ steps.render-task-def.outputs.task-definition }}

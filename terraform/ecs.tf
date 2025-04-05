@@ -2,6 +2,31 @@ resource "aws_ecs_cluster" "medusa_cluster" {
   name = "medusa-cluster"
 }
 
+resource "aws_security_group" "ecs_sg" {
+  name        = "ecs-sg"
+  description = "Allow traffic from ALB to ECS"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    from_port       = 9000
+    to_port         = 9000
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb_sg.id]
+    description     = "Allow ALB to access ECS"
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "ECS SG"
+  }
+}
+
 resource "aws_ecs_task_definition" "medusa_task" {
   family                   = "medusa-task"
   requires_compatibilities = ["FARGATE"]
@@ -18,15 +43,14 @@ resource "aws_ecs_task_definition" "medusa_task" {
       portMappings = [
         {
           containerPort = 9000
-          hostPort      = 9000
         }
       ],
       environment = [
         {
-            name  = "DATABASE_URL"
-            value = "postgres://medusauser:MedusaDBStrongPassword123!@${aws_db_instance.medusa_postgres.address}:5432/medusadb"
+          name  = "DATABASE_URL"
+          value = "postgres://medusauser:MedusaDBStrongPassword123!@${aws_db_instance.medusa_postgres.address}:5432/medusadb"
         }
-    ],
+      ]
     }
   ])
 }

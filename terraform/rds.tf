@@ -36,11 +36,11 @@ resource "aws_db_instance" "medusa_postgres" {
   identifier              = "medusa-postgres-db"
   allocated_storage       = 20
   engine                  = "postgres"
-  engine_version          = "15.3"
+  engine_version          = "15.7"
   instance_class          = "db.t3.micro"
-  name                    = "medusadb"
+  db_name                 = "medusadb"
   username                = "medusauser"
-  password                = "MedusaDBStrongPassword123!" # Change this securely
+  password                = "MedusaDBStrongPassword123!" # Secure this
   db_subnet_group_name    = aws_db_subnet_group.medusa_db_subnet_group.name
   vpc_security_group_ids  = [aws_security_group.rds_sg.id]
   skip_final_snapshot     = true
