@@ -1,11 +1,11 @@
 {
     "family": "medusa-task",
     "networkMode": "awsvpc",
-    "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::891377398861:role/ecsTaskExecutionRole",
     "containerDefinitions": [
       {
         "name": "medusa",
-        "image": "dummy",
+        "image": "vighasks/medusa-backend:latest",
         "portMappings": [
           {
             "containerPort": 9000,
