@@ -9,6 +9,7 @@
         "portMappings": [
           {
             "containerPort": 9000,
+            "hostPort": 9000,
             "protocol": "tcp"
           }
         ],
