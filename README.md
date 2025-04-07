@@ -73,17 +73,12 @@ terraform plan
 ```
 terraform apply
 ```
-This will:
+## 🚀 What This Setup Will Do
 
-Create VPC with public and private subnets
-
-Provision ALB (Application Load Balancer)
-
-Create ECS Cluster and Fargate service
-
-Deploy Medusa backend container
-
-Setup PostgreSQL RDS in private subnet
-
-Output ALB DNS and RDS endpoint
+- [x] **Create a VPC** with both public and private subnets
+- [x] **Provision an Application Load Balancer (ALB)** for traffic routing
+- [x] **Create an ECS Cluster** and deploy a **Fargate service**
+- [x] **Deploy the Medusa backend** as a Docker container
+- [x] **Provision a PostgreSQL RDS instance** in the private subnet
+- [x] **Output ALB DNS** name and **RDS endpoint** for external access
 
