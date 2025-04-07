@@ -129,5 +129,28 @@ Once the GitHub Actions pipeline finishes successfully:
   - Go to **Tasks**
   - Select the running task
   - Click on the **Logs** tab to view container output
+ 
+  ## 🧭 Running the Application Locally
+
+To run the application locally, follow these steps:
+
+```bash
+cd medusa-backend
+npm run start
+```
+🔐 Creating Admin Login Credentials
+To create your admin user credentials, run the following command:
+```
+medusa user -e your-email@example.com -p yourPassword123
+```
+Replace your-email@example.com and yourPassword123 with your desired login credentials.
+
+✅ Logging In
+After creating the user, visit:
+
+```
+http://localhost:9000/app/login
+```
+Enter the email and password you just set — and you're in! 🚀
 
 
