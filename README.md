@@ -27,3 +27,66 @@ This project demonstrates how to deploy the **[Medusa.js](https://docs.medusajs.
 │       └── deploy.yml
 └── README.md
 ```
+
+## ✅ Prerequisites
+AWS Account with permissions to use:
+
+ECS
+
+RDS
+
+ALB
+
+IAM
+
+VPC/Subnets
+
+Terraform (v1.5+)
+
+Docker & DockerHub
+
+GitHub Repository with:
+
+GitHub Actions enabled
+
+Repository secrets added
+
+## 🔐 Required GitHub Secrets
+In your GitHub repo, go to Settings > Secrets > Actions and add the following:
+
+
+AWS_ACCESS_KEY_ID	
+AWS_SECRET_ACCESS_KEY	
+DOCKER_USERNAME	
+DOCKER_PASSWORD	
+
+## 🧱 Terraform Infrastructure Setup
+Navigate to the terraform/ directory and follow the steps below:
+
+## 1️⃣ Initialize Terraform
+```
+cd terraform
+terraform init
+```
+## 2️⃣ Review Terraform Plan
+```
+terraform plan
+```
+## 3️⃣ Apply Terraform Configurations
+```
+terraform apply
+```
+This will:
+
+Create VPC with public and private subnets
+
+Provision ALB (Application Load Balancer)
+
+Create ECS Cluster and Fargate service
+
+Deploy Medusa backend container
+
+Setup PostgreSQL RDS in private subnet
+
+Output ALB DNS and RDS endpoint
+
