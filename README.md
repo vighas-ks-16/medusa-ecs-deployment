@@ -130,7 +130,7 @@ Once the GitHub Actions pipeline finishes successfully:
   - Select the running task
   - Click on the **Logs** tab to view container output
  
-  ## 🧭 Running the Application Locally
+## 🧭 Running the Application Locally
 
 To run the application locally, follow these steps:
 
