@@ -82,3 +82,52 @@ terraform apply
 - [x] **Provision a PostgreSQL RDS instance** in the private subnet
 - [x] **Output ALB DNS** name and **RDS endpoint** for external access
 
+---
+
+## 🚀 Trigger GitHub Actions Pipeline
+
+The GitHub Actions CI/CD pipeline is configured to trigger automatically on every `push` to the `main` branch.
+
+### 🔄 Auto-Trigger on Code Push
+
+Whenever you push any code changes to the `main` branch — such as Dockerfile changes, app logic, or configurations in `medusa-backend/` — the workflow will:
+
+1. **Checkout the repository**
+2. **Authenticate with AWS and DockerHub**
+3. **Build & Push the Docker Image** to DockerHub
+4. **Render ECS Task Definition**
+5. **Deploy the latest container** to AWS ECS Fargate
+
+#### ✅ Steps to Trigger
+
+```bash
+# Make changes to your Medusa backend or Dockerfile
+cd medusa-backend
+nano Dockerfile   # or modify source files
+
+# Add and commit your changes
+git add .
+git commit -m "Updated backend logic or Dockerfile"
+
+# Push to main branch
+git push origin main
+```
+
+## 🧪 Verifying Successful Deployment
+
+Once the GitHub Actions pipeline finishes successfully:
+
+- ✅ **Access the Medusa Backend**  
+  Visit the **ALB DNS Name** output by Terraform (or retrieve it from the AWS Console):
+  - AWS Console → EC2 → Load Balancers → Select your ALB → Description tab → DNS Name
+
+- ✅ **Check ECS Logs for Debugging or Confirmation**  
+  Navigate to:
+  - AWS Console → **ECS**
+  - Select **Clusters**
+  - Choose `medusa-cluster`
+  - Go to **Tasks**
+  - Select the running task
+  - Click on the **Logs** tab to view container output
+
+
