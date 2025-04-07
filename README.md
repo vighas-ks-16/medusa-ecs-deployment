@@ -28,37 +28,34 @@ This project demonstrates how to deploy the **[Medusa.js](https://docs.medusajs.
 └── README.md
 ```
 
-## ✅ Prerequisites
-AWS Account with permissions to use:
+## Prerequisites
 
-ECS
+Ensure you have the following setup before proceeding:
 
-RDS
+### ✅ AWS Account Permissions
 
-ALB
+- [ ] **Amazon ECS** - Elastic Container Service for deploying Docker containers.
+- [ ] **Amazon RDS** - Relational Database Service for database provisioning.
+- [ ] **Application Load Balancer (ALB)** - For routing traffic to services.
+- [ ] **IAM** - Access to create and manage IAM roles and policies.
+- [ ] **VPC & Subnets** - Permissions to configure and use Virtual Private Cloud networking.
 
-IAM
+### ✅ Tools & Versions
 
-VPC/Subnets
+- [ ] **Terraform** - Installed and configured (Version 1.5+ recommended).
+- [ ] **Docker** - Installed and running on your local system.
+- [ ] **DockerHub Account** - With access to push and pull images.
 
-Terraform (v1.5+)
+### ✅ GitHub Repository Setup
 
-Docker & DockerHub
+- [ ] **GitHub Actions Enabled** - Ensure workflows can be triggered.
+- [ ] **Repository Secrets Configured**:
+  - `DOCKER_USERNAME`
+  - `DOCKER_PASSWORD`
+  - `SERVER_IP`
+  - `SERVER_USERNAME`
+  - `SERVER_PASSWORD`
 
-GitHub Repository with:
-
-GitHub Actions enabled
-
-Repository secrets added
-
-## 🔐 Required GitHub Secrets
-In your GitHub repo, go to Settings > Secrets > Actions and add the following:
-
-
-AWS_ACCESS_KEY_ID	
-AWS_SECRET_ACCESS_KEY	
-DOCKER_USERNAME	
-DOCKER_PASSWORD	
 
 ## 🧱 Terraform Infrastructure Setup
 Navigate to the terraform/ directory and follow the steps below:
